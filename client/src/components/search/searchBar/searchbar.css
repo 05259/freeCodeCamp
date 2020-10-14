@@ -10,16 +10,21 @@
   color: var(--gray-00);
 }
 
-.ais-SearchBox-submit,
 .ais-SearchBox-reset {
   display: none;
 }
 
 .ais-SearchBox-input {
-  padding: 1px 10px;
+  padding: 0 10px 0 30px;
   font-size: 18px;
   display: inline-block;
-  width: calc(100vw - 10px);
+  margin-top: 6px;
+  height: 26px;
+}
+
+.ais-SearchBox-submit {
+  left: 0.3rem;
+  top: 59.5%;
 }
 
 .fcc_searchBar .ais-SearchBox-input,
@@ -29,67 +34,18 @@
   color: var(--gray-00);
 }
 
+.fcc_searchBar .ais-Hits {
+  top: 70px;
+  width: calc(100vw - 30px);
+  left: 15px;
+}
+
 .fcc_searchBar .ais-SearchBox-form {
   margin-bottom: 0;
   display: flex;
   position: absolute;
   top: var(--header-height);
   right: 5px;
-}
-
-.fcc_searchBar .ais-Hits {
-  top: 71px;
-  width: calc(100vw - 10px);
-  left: 5px;
-}
-
-#fcc_instantsearch {
-  margin-top: 6px;
-}
-
-@media (min-width: 380px) {
-  .fcc_searchBar .ais-Hits {
-    width: calc(100vw - 30px);
-    left: 15px;
-  }
-  .ais-SearchBox-input {
-    width: calc(100vw - 30px);
-  }
-  .fcc_searchBar .ais-SearchBox-form {
-    display: flex;
-    position: absolute;
-    top: var(--header-height);
-    right: 15px;
-  }
-}
-
-@media (min-width: 700px) {
-  .ais-SearchBox-input {
-    width: 100%;
-  }
-  #fcc_instantsearch {
-    margin-top: 6px;
-    max-width: 500px;
-  }
-  .fcc_searchBar {
-    position: relative;
-  }
-  .fcc_searchBar .ais-Hits {
-    top: auto;
-    width: calc(80vw - 20px);
-    left: 10px;
-  }
-  .fcc_searchBar .ais-SearchBox-form {
-    display: flex;
-    position: static;
-    top: auto;
-    right: 15px;
-  }
-}
-@media (min-width: 1100px) {
-  .fcc_searchBar .ais-Hits {
-    width: calc(100% - 20px);
-  }
 }
 
 /* hits */
@@ -110,8 +66,8 @@
 
 .fcc_suggestion_item {
   display: block;
-  padding: 8px;
-  color: var(--gray-00);
+  padding: 5px;
+  color: var(--gray-00) !important;
   text-decoration: none;
 }
 
@@ -120,8 +76,11 @@
 }
 
 .fcc_suggestion_item:hover {
-  background-color: var(--blue-dark);
   cursor: pointer;
+}
+
+.no-hits-footer.fcc_suggestion_item:hover {
+  cursor: default;
 }
 
 .fcc_sr_only {
@@ -135,28 +94,70 @@
   border: 0;
 }
 
-/* Dropdown footer */
-.fcc_suggestion_footer {
-  border-top: 1.5px solid var(--gray-00);
+.ais-Hits-item {
+  background-color: var(--gray-75);
 }
 
-.fcc_suggestion_footer .hit-name .ais-Highlight .ais-Highlight-nonHighlighted {
+/* Hit selected with arrow keys or mouse */
+.selected {
+  background-color: var(--blue-dark);
+}
+
+/* Override for rule in global.css to prevent
+multiple highlighted hits with the mouse
+and arrow keys */
+.fcc_suggestion_item:focus,
+.fcc_suggestion_item:hover {
+  background-color: transparent;
+}
+
+/* Dropdown footer */
+.fcc_suggestion_footer {
+  padding: 6.5px 8px 8px;
+}
+
+.fcc_suggestion_footer .hit-name .ais-Highlight {
   font-weight: bold;
 }
 
-/* Show only the first 5 hits on mobile */
-.ais-Hits-list .ais-Hits-item:nth-child(n + 6) {
-  display: none;
+.no-hits-footer {
+  border-top: 0px;
+  font-weight: 300;
 }
 
-/* Ensure the dropdown footer is always visible */
-.ais-Hits-list .ais-Hits-item:nth-child(9) {
-  display: block;
+.ais-SearchBox-input {
+  width: calc(100vw - 30px);
 }
 
-@media (min-width: 767px) and (min-height: 768px) {
-  /* Show hits 6-8 on desktop and some tablets */
-  .ais-Hits-list .ais-Hits-item:nth-child(n + 6) {
-    display: block;
+.fcc_searchBar .ais-SearchBox-form {
+  display: flex;
+  position: absolute;
+  top: var(--header-height);
+  right: 15px;
+}
+
+@media (min-width: 1000px) {
+  .ais-SearchBox-input {
+    width: 100%;
+    max-width: 500px;
+  }
+  .fcc_searchBar {
+    position: relative;
+    max-width: 520px;
+  }
+  .fcc_searchBar .ais-Hits {
+    top: auto;
+    width: calc(100% - 20px);
+    max-width: 500px;
+    left: 10px;
+  }
+  .fcc_searchBar .ais-SearchBox-form {
+    display: flex;
+    position: static;
+    top: auto;
+    right: 15px;
+  }
+  .ais-SearchBox-submit {
+    left: 0.85rem;
   }
 }
